@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="flex flex-col items-center justify-between border-t border-grey-lighter py-10 sm:flex-row sm:py-12" >
+    <div class="mr-auto flex flex-col items-center sm:flex-row">
+        <a href="/" class="mr-auto sm:mr-6">
+        <img src="{% static 'img/logo.svg' %}" alt="logo" />
+        </a>
+        <p class="pt-5 font-body font-light text-primary dark:text-white sm:pt-0">
+        ©2020 John Doe.
+        </p>
+    </div>
+    <div class="mr-auto flex items-center pt-5 sm:mr-0 sm:pt-0">
+
+        {% if settings.site_settings.FooterLinks.github %}
+            <a href="{{ settings.site_settings.FooterLinks.github }}" target="_blank">
+                <i class="text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-github"></i>
+            </a>
+        {% endif %}
+
+        {% if settings.site_settings.FooterLinks.linkedin %}
+            <a href="{{ settings.site_settings.FooterLinks.linkedin }}" target="_blank">
+                <i class="text-4xl text-primary dark:text-white pl-5 hover:text-secondary dark:hover:text-secondary transition-colors bx bxl-linkedin"></i>
+            </a>
+        {% endif %}
+
+    </div>
+</div>
