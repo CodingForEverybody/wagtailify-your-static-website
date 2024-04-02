@@ -1,14 +1,15 @@
-{% load static navbar_tags %}
+{% load static navbar_tags wagtailimages_tags wagtailcore_tags %}
 
 {% get_navbar_pages as navbar_pages %}
+{% wagtail_site as current_site %}
 
 <div class="flex items-center justify-between py-6 lg:py-10">
     <a href="/" class="flex items-center">
       <span href="/" class="mr-2">
-        <img src="{% static 'img/logo.svg' %}" alt="logo" />
+        {% image settings.site_settings.BrandSettings.logo max-48x40 %}
       </span>
       <p class="hidden font-body text-2xl font-bold text-primary dark:text-white lg:block">
-        John Doe
+        {{ current_site.site_name }}
       </p>
     </a>
     <div class="flex items-center lg:hidden">

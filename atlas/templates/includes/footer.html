@@ -1,12 +1,14 @@
-{% load static %}
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% wagtail_site as current_site %}
 
 <div class="flex flex-col items-center justify-between border-t border-grey-lighter py-10 sm:flex-row sm:py-12" >
     <div class="mr-auto flex flex-col items-center sm:flex-row">
         <a href="/" class="mr-auto sm:mr-6">
-        <img src="{% static 'img/logo.svg' %}" alt="logo" />
+            {% image settings.site_settings.BrandSettings.logo max-48x40 %}
         </a>
         <p class="pt-5 font-body font-light text-primary dark:text-white sm:pt-0">
-        ©2020 John Doe.
+        &copy; {% now "Y" %} {{ current_site.site_name }}
         </p>
     </div>
     <div class="mr-auto flex items-center pt-5 sm:mr-0 sm:pt-0">
