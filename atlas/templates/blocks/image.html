@@ -1,0 +1,6 @@
+{% load wagtailimages_tags %}
+
+{% image self fill-800x440 as img %}
+
+<img src="{{ img.url }}" alt="" class="w-full h-auto my-2 rounded-lg" style="border-radius: 1em;">
+
