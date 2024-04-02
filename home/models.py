@@ -3,7 +3,11 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 
+from blog.models import BlogIndexPage
+
 class HomePage(Page):
+    max_count = 1
+
     author_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -51,6 +55,7 @@ class HomePage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
+        context['blog_index'] = BlogIndexPage.objects.first()
         context['blog_posts'] = [1, 2, 3]
         # TODO: Add blog posts
         # BlogPage.objects.live().public().order_by('-first_published_at')[:3]
