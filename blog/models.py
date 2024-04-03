@@ -27,7 +27,6 @@ class BlogCategory(models.Model):
             return 'yellow-dark'
         return self.color
 
-
     class Meta:
         verbose_name_plural = 'blog categories'
 
@@ -62,8 +61,7 @@ class BlogIndexPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        # TODO:
-        # context['posts'] = BlogPage.objects.live().public().order_by('-first_pubished_at')
+        context['posts'] = BlogPage.objects.live().public().order_by('-first_published_at')
         return context
 
 

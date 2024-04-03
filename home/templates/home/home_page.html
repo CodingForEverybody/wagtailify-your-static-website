@@ -61,26 +61,7 @@
     </div>
     <div class="pt-8">
       {% for post in blog_posts %}
-        <div class="border-b border-grey-lighter pt-10 pb-8">
-            <span
-            class="mb-4 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green"
-            >category</span
-            >
-            <a
-            href="post.html"
-            class="block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary"
-            >Quis hendrerit dolor magna eget est lorem ipsum dolor sit</a
-            >
-            <div class="flex items-center pt-4">
-            <p class="pr-2 font-body font-light text-primary dark:text-white">
-                July 19, 2020
-            </p>
-            <span class="font-body text-grey dark:text-white">//</span>
-            <p class="pl-2 font-body font-light text-primary dark:text-white">
-                4 min read
-            </p>
-            </div>
-        </div>
+        {% include 'includes/blog_preview.html' with post=post %}
       {% endfor %}
     </div>
   </div>
