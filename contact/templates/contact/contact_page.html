@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static %}
+
+{% block content %}
+
+<div class="py-16 lg:py-20">
+    <div>
+      <img src="{% static 'img/icon-contact.png' %}" alt="icon envelope" />
+    </div>
+    <h1
+      class="pt-5 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl"
+    >
+      {{ page.title }}
+    </h1>
+    <div class="pr-2 pt-3 sm:pt-0">
+      <p class="font-body text-xl font-light text-primary dark:text-white">
+        {{ page.subtitle }}
+      </p>
+    </div>
+
+    <form class="pt-16 form" action="{% pageurl page %}" method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="col">
+                <label class="block pb-3 font-body font-medium text-primary dark:text-white" >
+                    {{ field.label_tag }}
+                </label>
+                {% for error in field.errors%}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+                {{ field }}
+            </div>
+        {% endfor %}
+
+      <button type="submit" class="mt-10 mb-12 block bg-secondary px-10 py-4 text-center font-body text-xl font-semibold text-white transition-colors hover:bg-green sm:inline-block sm:text-left sm:text-2xl" >
+        Send Message
+      </button>
+    </form>
+  </div>
+
+
+{% endblock %}
