@@ -45,26 +45,35 @@
 
     </div>
 
+    {% if posts.paginator.num_pages > 1 %}
     <div class="flex pt-8 lg:pt-16">
-      <span
-        class="cursor-pointer border-2 border-secondary px-3 py-1 font-body font-medium text-secondary"
-        >1</span
-      >
-      <span
-        class="ml-3 cursor-pointer border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary"
-        >2</span
-      >
-      <span
-        class="ml-3 cursor-pointer border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary"
-        >3</span
-      >
-      <span
-        class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary"
-        >Next
-        <i
-          class="bx bx-right-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"
-        ></i
-      ></span>
+
+      {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
+          <i class="bx bx-left-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"></i>
+          Prev
+        </a>
+      {% endif %}
+
+      {% for page_num in posts.paginator.page_range %}
+        {% if posts.number == page_num %}
+          <a href="?page={{ page_num }}" class="ml-3 cursor-pointer border-2 border-secondary px-3 py-1 font-body font-medium text-secondary">
+            {{ page_num}}
+          </a>
+        {% else %}
+          <a href="?page={{ page_num }}" class="ml-3 cursor-pointer border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
+            {{ page_num}}
+          </a>
+        {% endif %}
+      {% endfor %}
+
+      {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
+          Next
+          <i class="bx bx-right-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"></i>
+        </a>
+      {% endif %}
     </div>
+    {% endif %}
   </div>
 {% endblock content %}
